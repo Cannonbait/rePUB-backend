@@ -11,7 +11,7 @@ data class Annotation(
         @ManyToOne
         val isbn: Book,
         @ManyToOne
-        val collectionId: Collection,
+        val collectionId: AnnotationCollection,
         @ManyToOne
         val userid: User,
 
