@@ -10,18 +10,18 @@ import javax.validation.Valid
 @RequestMapping("/api")
 class BookController(private val BookRepository: BookRepository) {
 
-    @GetMapping("/Books")
+    @GetMapping("/books")
     fun getAllBooks(): List<Book> =
             BookRepository.findAll()
 
 
-    @PostMapping("/Books")
+    @PostMapping("/books")
     fun createNewBook(@Valid @RequestBody Book: Book): Book =
             BookRepository.save(Book)
 
 
-    @GetMapping("/Books/{id}")
-    fun getBookById(@PathVariable(value = "id") BookId: Long): ResponseEntity<Book> {
+    @GetMapping("/books/{id}")
+    fun getBookById(@PathVariable(value = "id") BookId: String): ResponseEntity<Book> {
         return BookRepository.findById(BookId).map { Book ->
             ResponseEntity.ok(Book)
         }.orElse(ResponseEntity.notFound().build())

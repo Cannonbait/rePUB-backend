@@ -1,5 +1,6 @@
 package com.rePUB.rePUB.model
 
+import com.fasterxml.jackson.annotation.JsonIgnore
 import javax.persistence.*
 import javax.validation.constraints.NotBlank
 
@@ -8,10 +9,8 @@ data class AnnotationCollection(
         @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
         val collectionId: Long = 0,
 
-        @ManyToOne
-        val bookId: Book,
-        @ManyToOne
-        val owner: User,
+        var bookId: String,
+        var ownerId: Long,
 
         @get: NotBlank
         val name: String = ""
