@@ -1,10 +1,11 @@
 package com.rePUB.rePUB.controller
 
 
+import com.fasterxml.jackson.databind.JsonNode
 import com.rePUB.rePUB.model.AnnotationCollection
-import com.rePUB.rePUB.model.Book
-import com.rePUB.rePUB.model.User
+import com.rePUB.rePUB.repository.BookRepository
 import com.rePUB.rePUB.repository.CollectionRepository
+import com.rePUB.rePUB.repository.UserRepository
 import org.springframework.web.bind.annotation.*
 import javax.validation.Valid
 @RestController
@@ -17,12 +18,8 @@ class CollectionController(private val collectionRepository: CollectionRepositor
 
 
     @PostMapping("/collection")
-    fun createNewCollection(@Valid @RequestBody AnnotationCollection: AnnotationCollection): AnnotationCollection {
-        collectionRepository.save(AnnotationCollection)
-
+    fun createNewCollection(@Valid @RequestBody annotationCollection: AnnotationCollection): AnnotationCollection {
+        return collectionRepository.save(annotationCollection)
     }
-
-
-
 }
 

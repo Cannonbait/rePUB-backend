@@ -13,36 +13,24 @@ import javax.validation.Valid
 @RequestMapping("/api")
 class AnnotationController(private val AnnotationRepository: AnnotationRepository) {
 
-    @GetMapping("/Annotations")
+    @GetMapping("/annotations")
     fun getAllAnnotations(): List<Annotation> =
             AnnotationRepository.findAll()
 
 
-    @PostMapping("/Annotations")
+    @PostMapping("/annotations")
     fun createNewAnnotation(@Valid @RequestBody Annotation: Annotation): Annotation =
             AnnotationRepository.save(Annotation)
 
 
-    @GetMapping("/Annotations/{id}")
+    @GetMapping("/annotations/{id}")
     fun getAnnotationById(@PathVariable(value = "id") AnnotationId: Long): ResponseEntity<Annotation> {
         return AnnotationRepository.findById(AnnotationId).map { Annotation ->
             ResponseEntity.ok(Annotation)
         }.orElse(ResponseEntity.notFound().build())
     }
-//
-//    @PutMapping("/Annotations/{id}")
-//    fun updateAnnotationById(@PathVariable(value = "id") AnnotationId: Long,
-//                          @Valid @RequestBody newAnnotation: Annotation): ResponseEntity<Annotation> {
-//
-//        return AnnotationRepository.findById(AnnotationId).map { existingAnnotation ->
-//            val updatedAnnotation: Annotation = existingAnnotation
-//                    .copy(title = newAnnotation.title, content = newAnnotation.content)
-//            ResponseEntity.ok().body(AnnotationRepository.save(updatedAnnotation))
-//        }.orElse(ResponseEntity.notFound().build())
-//
-//    }
 
-    @DeleteMapping("/Annotations/{id}")
+    @DeleteMapping("/annotations/{id}")
     fun deleteAnnotationById(@PathVariable(value = "id") AnnotationId: Long): ResponseEntity<Void> {
 
         return AnnotationRepository.findById(AnnotationId).map { Annotation  ->

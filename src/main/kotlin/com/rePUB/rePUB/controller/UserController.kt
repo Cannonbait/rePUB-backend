@@ -13,12 +13,12 @@ import javax.validation.Valid
 @RequestMapping("/api")
 class UserController(private val userRepository: UserRepository) {
 
-    @GetMapping("/Users")
+    @GetMapping("/users")
     fun getAllUsers(): List<User> =
             userRepository.findAll()
 
 
-    @PostMapping("/Users")
+    @PostMapping("/users")
     fun createNewUser(@Valid @RequestBody User: User): User =
             userRepository.save(User)
 

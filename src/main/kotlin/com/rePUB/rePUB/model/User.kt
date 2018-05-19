@@ -11,6 +11,5 @@ import javax.validation.constraints.NotBlank
 data class User(
         @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
         val userId: Long = 0,
-
         val name: String = ""
 )

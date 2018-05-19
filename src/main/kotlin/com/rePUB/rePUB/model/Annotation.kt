@@ -8,12 +8,9 @@ data class Annotation(
         @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
         val annotationId: Long = 0,
 
-        @ManyToOne
-        val isbn: Book,
-        @ManyToOne
-        val collectionId: AnnotationCollection,
-        @ManyToOne
-        val userid: User,
+        val book_isbn: String = "",
+        val collection_id: Long = 0,
+        val user_id: Long = 0,
 
         @get: NotBlank
         val location: String = "",
